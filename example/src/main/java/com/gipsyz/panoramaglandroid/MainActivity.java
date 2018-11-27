@@ -21,7 +21,7 @@ import com.panoramagl.enumerations.PLSensorialRotationType;
 
 import java.lang.reflect.Array;
 
-public class MainActivity extends AppCompatActivity implements SensorEventListener {
+public class MainActivity extends AppCompatActivity  {
 
     private PLManager plManager;
     private int currentIndex = -1;
@@ -73,7 +73,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
    private SensorManager sensorManager;
    private Sensor gyroscopeSensor;
-   private SensorEventListener gyroscopeEventListener;
+   private Sensor acelerometro;
+
 
 
 
@@ -114,33 +115,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
 sensorManager = (SensorManager)this.getSystemService(SENSOR_SERVICE);
 
-gyroscopeSensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
-
-if (gyroscopeSensor != null){
-    sensorManager.registerListener(MainActivity.this, gyroscopeSensor, SensorManager.SENSOR_DELAY_NORMAL);
-}else {
-    System.out.println("Giroscoópico no soportado");
-}
 
 
 
 
-    /*  gyroscopeEventListener = new SensorEventListener() {
-          @Override
-          public void onSensorChanged(SensorEvent event) {
-              if (event.values[2] > 0.5f){
-                  System.out.println("-------------------------- X?: "+event.values[0]);
-                  System.out.println("-------------------------- Y?: "+event.values[1]);
-                  System.out.println("-------------------------- Z: "+event.values[2]);
-              }
-          }
 
-          @Override
-          public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
-          }
-      };
-*/
 
 
 
@@ -171,7 +151,7 @@ if (gyroscopeSensor != null){
     protected void onDestroy() {
         super.onDestroy();
         plManager.onDestroy();
-        sensorManager.unregisterListener(gyroscopeEventListener);
+
     }
 
 
@@ -208,43 +188,6 @@ if (gyroscopeSensor != null){
     }
 
 
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-
-      /* Sensor sensor = event.sensor;
-        System.out.println("ESTE ES EL SENSOOOOOOOOOOOOOOOOOOOOOOOOOOOOR °°°°°°°°°°°°°°°°°°°°°°°°°°°"+sensor);*/
-
-
-        if (event.values[2] > 0.5f){
-            System.out.println("-------------------------- X?: "+event.values[0]);
-            System.out.println("-------------------------- Y?: "+event.values[1]);
-            System.out.println("-------------------------- Z: "+event.values[2]);
-        }
-/*
-        float pitch = event.values[0];//Orientación en Y
-        float yaw = event.values[1];*/
-  /*      float zoomFactor = 100f; //velocidad de desplazamiento
-
-        if (panorama != null){
-            PLICamera camera = plManager.getPanorama().getCamera();
-          *//*  pitch = camera.getPitch();
-            yaw = camera.getYaw();*//*
-            zoomFactor = camera.getZoomFactor();
-            panorama.getCamera().lookAtAndZoomFactor(event.values[0], event.values[2], zoomFactor, false);
-        } else {
-            System.out.println("☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺ panorama es NULL ☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺☺");
-        }
-
-*/
-
-
-
-    }
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-    }
 
 
 
