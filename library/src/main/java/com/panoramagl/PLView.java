@@ -1077,7 +1077,7 @@ public class PLView extends Activity implements PLIView, SensorEventListener, On
 							}
 							if(isNotCancelable)
 							{
-								updateInitialSensorialRotation = false;
+								updateInitialSensorialRotation = true;
 								this.startInertia();
 							}
 						}

@@ -164,6 +164,9 @@ sensorManager = (SensorManager)this.getSystemService(SENSOR_SERVICE);
     private void changePanorama(int index) {
         if(currentIndex == index) return;
 
+
+      plManager.startSensorialRotation();
+
        panorama = new PLSphericalPanorama();
         panorama.setImage(new PLImage(PLUtils.getBitmap(this, resourceIds[index]), false));
         float pitch = 5f;//Orientación en Y
